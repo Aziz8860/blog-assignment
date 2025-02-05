@@ -4,7 +4,9 @@ import Link from 'next/link';
 import React from 'react';
 
 export const Posts = async () => {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_URL);
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL, {
+    next: { revalidate: 0 },
+  });
   const { data } = await res.json();
 
   if (data.length === 0) {
