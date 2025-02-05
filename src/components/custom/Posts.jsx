@@ -1,6 +1,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
+import React from 'react';
 
 export const Posts = async () => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL);
@@ -42,7 +43,7 @@ export const Posts = async () => {
       {/* Scrollable Articles */}
       <ScrollArea className="md:col-span-1 h-[32rem] space-y-1">
         {data.slice(1).map((data) => (
-          <>
+          <React.Fragment key={data._id}>
             <Link
               key={data._id}
               href={`post/${data._id}`}
@@ -64,7 +65,7 @@ export const Posts = async () => {
               </div>
             </Link>
             <Separator className="my-2" />
-          </>
+          </React.Fragment>
         ))}
       </ScrollArea>
     </div>
